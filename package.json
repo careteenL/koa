@@ -4,7 +4,7 @@
   "description": "Learn to copy write koa",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "example": "node examples/1.use.js"
   },
   "repository": {
     "type": "git",
