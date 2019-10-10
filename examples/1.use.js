@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const Koa = require('../src/index')
+// const Koa = require('../src/index')
+const Koa = require('koa')
 
 let app = new Koa()
 
@@ -23,6 +24,8 @@ app.use(async (ctx, next) => {
   // 流
   ctx.body = fs.createReadStream(path.join(__dirname, '1.use.html'))
   await next()
+  // await next()
+  // await next()
   console.log(2)
 })
 

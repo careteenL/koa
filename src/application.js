@@ -42,17 +42,22 @@ class Koa extends Emitter{
 
   /**
    * 组合中间件
-   * @param {*} middlewares 
-   * @param {*} ctx 
+   * @param {Array<Function>} middlewares 
+   * @param {context} ctx 
    */ 
   compose (middlewares, ctx) {
+    let flag = -1
     function dispatch (index) {
-      // 迭代终止条件 取完中间件
-      // 然后返回成功的promise
+      // 3）flag记录已经运行的中间件下标
+      // 3.1）若一个中间件调用两次next那么index会小于flag
+      if (index <= flag) return Promise.reject(new Error('next() called multiple times'))
+      flag = index
+      // 2）迭代终止条件：取完中间件
+      // 2.1）然后返回成功的promise
       if (index === middlewares.length) return Promise.resolve()
+      // 1）让第一个函数执行完，如果有异步的话，需要看看有没有await
+      // 1.1）必须返回一个promise
       let middleware = middlewares[index]
-      // 让第一个函数执行完，如果有异步的话，需要看看有没有await
-      // 必须返回一个promise
       return Promise.resolve(middleware(ctx, () => dispatch(index + 1)))
     }
     return dispatch(0)

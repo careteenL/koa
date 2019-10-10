@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/careteenL/koa/issues"
   },
-  "homepage": "https://github.com/careteenL/koa#readme"
+  "homepage": "https://github.com/careteenL/koa#readme",
+  "devDependencies": {
+    "koa": "^2.8.2"
+  }
 }
