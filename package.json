@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/careteenL/koa#readme",
   "devDependencies": {
-    "koa": "^2.8.2"
+    "koa": "^3.1.2"
   }
 }
